@@ -178,7 +178,7 @@ w||_2^2/2$ is the elastic net, and the average loss $\mathcal L$ is defined as
   s,
   \beta + \mathbf w^\intercal \mathbf x_i).
 \end{equation}
-The observation-specific loss $\ell$ is defined as
+Let $\eta_i = \beta + \mathbf w^\intercal \mathbf x_i$.  The observation-specific loss $\ell$ is defined as
 \begin{equation}
   \label{eq:ell}
 \ell(
@@ -190,12 +190,14 @@ The observation-specific loss $\ell$ is defined as
 \begin{cases}
   s-\log f\left(\frac{\underline y - \eta}{e^s}\right) &
   \text{ if } \underline y = \overline y\\
-  \log\left[
-    F\left(\frac{\underline y-\eta}{e^s}\right)-
-    F\left(\frac{\overline y-\eta}{e^s}\right)
+  -\log\left[
+    F\left(\frac{\overline y-\eta}{e^s}\right)-
+    F\left(\frac{\underline y-\eta}{e^s}\right)
   \right] & \text{ otherwise.}
 \end{cases}
 \end{equation}
+The losses for left and right censored observations can be obtained by setting
+$\underline y = \mathbf {-Inf}$ and $\overline y = \mathbf {Inf}$ respectively.
 The density $f$ and cumulative distribution function $F$ depend on the
 choice of the distribution (normal, logistic, etc). TODO table with
 precise equations for $f$ and $F$ for the models we have implemented.
